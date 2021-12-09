@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+
+    <!--Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+            crossorigin="anonymous"></script>
+
+    <!--Custom CSS-->
+    <link href="./css/style.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/model/User.js"></script>
+    <script src="js/model/Ticket.js"></script>
+    <script src="js/model/Comentario.js"></script>
+    <script src="js/model/UserDTORequest.js"></script>
+
+
+    <script src="js/Api.js"></script>
+    <script src="js/App.js"></script>
+
+</head>
+
+<body onload="onInit()">
+    <h1 class="titulo-login display-1">CT Issue Tracker</h1>
+    <div class="formulario-login">
+        <form id="form">
+            <div class="mb-3">
+                <label for="inputUser" class="form-label">Email</label>
+                <input type="email" class="form-control" id="inputUser" aria-describedby="validar">
+            </div>
+            <div class="mb-3">
+                <label for="password-login" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password-login">
+            </div>
+
+            <button type="button" onclick="fnLogin()" class="btn btn-primary">Submit</button>
+
+            <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                    data-bs-target="#modalRegistro">
+                Registrarse
+            </button>
+        </form>
+        <!-- Modal -->
+        <div class="modal fade modal-registro" id="modalRegistro" tabindex="-1" aria-labelledby="modalRegistroLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalRegistroLabel">Registrarse</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-registro" id="formRegistro">
+                            <form id="formularioRegistro" onblur="() => {
+                                    fnBorrarWarningsRegistro();
+                                    fnValidar();
+                            }">
+                                <div class="mb-3 row">
+                                    <div class="col-4">
+                                        <label for="usuario-nombre" class="form-label">Nombre</label>
+                                    </div>
+                                    <div class="col-8">
+                                        <input type="text" class="form-control" id="usuario-nombre">
+                                    </div>
+                                </div>
+                                <div id = "validar-form-nombre" style= "display:none;">
+                                    Nombre Requerido
+                                </div>
+                                <div class="mb-3 row">
+                                    <div class="col-4">
+                                        <label for="usuario-apellido" class="form-label">Apellido</label>
+                                    </div>
+                                    <div class="col-8">
+                                        <input type="text" class="form-control" id="usuario-apellido">
+                                    </div>
+                                </div>
+                                <div id = "validar-form-apellido" style= "display:none;">
+                                    Apellido Requerido
+                                </div>
+                                <div class="mb-3 row">
+                                    <div class="col-4">
+                                        <label for="usuario-user" class="form-label">UserName</label>
+                                    </div>
+                                    <div class="col-8">
+                                        <input type="email" class="form-control" id="usuario-user">
+                                    </div>
+                                </div>
+                                <div id = "validar-form-userName" style= "display:none;">
+                                    UserName debe ser original, requerido y formato email
+                                </div>
+
+                                <div class="mb-3 row">
+                                    <div class="col-4">
+                                        <label for="usuario-password" class="form-label">Password</label>
+                                    </div>
+                                    <div class="col-8">
+                                        <input type="password" class="form-control" id="usuario-password">
+                                    </div>
+                                </div>
+                                <div id = "validar-form-password" style= "display:none;">
+                                    Password Requerido, Debe contener letras mayusculas y minusculas, caracteres y numero
+                                    Longitud minima 6 letras
+                                </div>
+
+                                <div class="mb-3 row">
+                                    <div class="col-4">
+                                        <label for="usuario-confirm-password" class="form-label">Confirm Your Password</label>
+                                    </div>
+                                    <div class="col-8">
+                                        <input type="password" class="form-control" id="usuario-confirm-password">
+                                    </div>
+                                </div>
+                                <div id = "validar-form-confirm-password" style= "display:none;">
+                                    Debe coincidir los password
+                                </div>
+                                <div>
+                                    <button type="button" class="btn btn-primary" id="btn-registrarse"
+                                            onclick="fnRegistrarse()">
+
+                                        Registrarse
+                                    </button>
+                                    <button type="button" class="btn btn-danger"
+                                            data-bs-dismiss="modal">
+                                        Cancelar
+                                    </button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Custom Scrips-->
+   
+
+</body>
+
+</html>
