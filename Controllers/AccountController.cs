@@ -37,8 +37,6 @@ namespace IssueTracker_web_api.Controllers
         private ApplicationUserManager _userManager;
         private IMapper _Mapper;
         private ApplicationDbContext db = new ApplicationDbContext();
-        private TicketsController tkController = new TicketsController();
-        private CommentsController cmController = new CommentsController();
         public AccountController()
         {
         }
@@ -50,7 +48,7 @@ namespace IssueTracker_web_api.Controllers
             AccessTokenFormat = accessTokenFormat;
         }
 
-        private void configMapper()
+        private void ConfigMapper()
         {
             var Config = new MapperConfiguration(c =>
             {
@@ -412,11 +410,15 @@ namespace IssueTracker_web_api.Controllers
 
         [HttpGet]
         [Route("Users")]
-        public List<UserDTO> getUsers(string id)
+        public IHttpActionResult getUsers(string id)
         {
-            configMapper();
+            ConfigMapper();
             List<UserDTO> DTOs = _Mapper.Map<List<UserDTO>>(UserManager.Users);
-            return DTOs.FindAll(u => id != u.Id);
+            if(!DTOs.Exists(u => u.Id.Equals(id)))
+            {
+                return BadRequest("Usuario No encontrado");
+            }
+            return Ok(DTOs.FindAll(u => !u.Id.Equals(id)));
 
         }
 
@@ -425,9 +427,10 @@ namespace IssueTracker_web_api.Controllers
         [Route("User")]
         public UserDTO getUserById(string id)
         {
-            configMapper();
+            ConfigMapper();
+
             List<UserDTO> result = _Mapper.Map<List<UserDTO>>(UserManager.Users);
-            return result.Find(u => u.Id == id);
+            return result.Find(u => u.Id.Equals(id));
         }
 
         [HttpGet]
@@ -448,7 +451,7 @@ namespace IssueTracker_web_api.Controllers
             if (id == null) {
                 return BadRequest("No se acepta id nulo");
             }
-            configMapper();
+            ConfigMapper();
             ApplicationUser au = new ApplicationUser();
 
 
@@ -482,7 +485,7 @@ namespace IssueTracker_web_api.Controllers
         [Route("User")]
         public UserDTO UpdateUser(string Id, UserUpdateDTO User)
         {
-            configMapper();
+            ConfigMapper();
             ApplicationUser ua = UserManager.FindById(Id);
             if (ua == null) return null;
             ua.Nombre = User.Nombre;
@@ -492,11 +495,29 @@ namespace IssueTracker_web_api.Controllers
         }
 
         [HttpGet]
+        [Route("UserName")]
+        [AllowAnonymous]
+        public IHttpActionResult getUserByUserName(string userName)
+        {
+            ConfigMapper();
+            ApplicationUser userEntity = UserManager.FindByEmail(userName);
+            if(userEntity == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Ok(_Mapper.Map<UserDTO>(userEntity));
+            }
+
+        }
+
+        [HttpGet]
         [AllowAnonymous]
         [Route("AllUsers")]
-        public List<UserDTO> getAllUsers()
+        public List<UserDTO> GetAllUsers()
         {
-            configMapper();
+            ConfigMapper();
             return _Mapper.Map<List<UserDTO>>(UserManager.Users);
 
         }
@@ -504,7 +525,7 @@ namespace IssueTracker_web_api.Controllers
         [AllowAnonymous]
         [Route("Roles")]
         [HttpGet]
-        public List<IdentityRole> getRoles()
+        public List<IdentityRole> GetRoles()
         {
             List<IdentityRole> Roles = new List<IdentityRole>();
             foreach(IdentityRole role in db.Roles)
@@ -518,7 +539,7 @@ namespace IssueTracker_web_api.Controllers
         [AllowAnonymous]
         [Route("Roles")]
         [HttpGet]
-        public IdentityRole createRole(string value)
+        public IdentityRole CreateRole(string value)
         {
             IdentityRole role = new IdentityRole(value);
             db.Roles.Add(role);

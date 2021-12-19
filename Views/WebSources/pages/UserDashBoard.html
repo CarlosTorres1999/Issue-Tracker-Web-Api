@@ -13,24 +13,121 @@
 
     <link href="../css/style.css" rel="stylesheet">
 
-    <script src="../js/model/User.js"></script>
-    <script src="../js/model/Ticket.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="../js/model/Comentario.js"></script>
-    <script src="../js/model/Data.js"></script>
+    <script src="../js/model/UserDTORequest.js"></script>
+    <script src="../js/model/UserUpdateDTO.js"></script>
 
+    <script src="../js/Api.js"></script>
     <script src="../js/app.js"></script>
+    <script src="../js/UserManager.js"></script>
 </head>
 
 <body onload="init()">
+
     <ul class="nav justify-content-end nav-user">
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Crear Usuario
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Crear Usuario</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3 row">
+                            <div class="col-4">
+                                <label for="createNombre" class="form-label">Nombre</label>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" class="form-control" id="createNombre">
+                            </div>
+                        </div>
+
+                        Nombre Requerido
+
+                        <div class="mb-3 row">
+                            <div class="col-4">
+                                <label for="createApellido" class="form-label">Apellido</label>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" class="form-control" id="createApellido">
+                            </div>
+                        </div>
+
+                        Apellido Requerido
+
+                        <div class="mb-3 row">
+                            <div class="col-4">
+                                <label for="createUserName" class="form-label">UserName</label>
+                            </div>
+                            <div class="col-8">
+                                <input type="email" class="form-control" id="createUserName">
+                            </div>
+                        </div>
+
+                        UserName debe ser original, requerido y formato email
+
+
+                        <div class="mb-3 row">
+                            <div class="col-4">
+                                <label for="createPassword" class="form-label">Password</label>
+                            </div>
+                            <div class="col-8">
+                                <input type="password" class="form-control" id="createPassword">
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <div class="col-4">
+                                <label for="createConfirmPassword" class="form-label">Confirm Password</label>
+                            </div>
+                            <div class="col-8">
+                                <input type="password" class="form-control" id="createConfirmPassword">
+                            </div>
+                        </div>
+
+                        Password Requerido, Debe contener letras mayusculas y minusculas, caracteres y numero
+                        Longitud minima 6 letras
+
+                        <div class ="mb-3 row">
+                            <div class = "col-sm-6">
+                                <label for = "createRole" class ="form-label">
+                                    Role
+                                </label>
+                            </div>
+                            <div class = "col-sm-6">
+                                <select id ="createRole" name = "roles">
+                                    <option value = "User">User</option>
+                                    <option value = "Admin">Admin</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="fnCrearYListar()">Crear Usuario</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <li class="nav-item">
             <a class="nav-link active" href="UsersDashboard.html">Bienvenido a la pag de Administracion</a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="javascript:fnLogOutUsersDashBoard()">Log Out</a>
+            <a class="nav-link" href="javascript:fnLogOut()">Log Out</a>
         </li>
     </ul>
+
+
 
     <div id="oculto">
         <form id="formularioActualizacion">
@@ -50,36 +147,9 @@
                     <input type="text" class="form-control" id="updateApellido">
                 </div>
             </div>
-            <div class="mb-3 row">
-                <div class="col-4">
-                    <label for="updateUserName" class="form-label">UserName</label>
-                </div>
-                <div class="col-8">
-                    <input type="text" class="form-control" id="updateUserName">
-                </div>
-            </div>
-
-            <div class="mb-3 row">
-                <div class="col-4">
-                    <label for="updatePassword" class="form-label">Password</label>
-                </div>
-                <div class="col-8">
-                    <input type="password" class="form-control" id="updatePassword">
-                </div>
-            </div>
-
-            <div class="mb-3 row">
-                <div class="col-4">
-                    <label for="updateRole" class="form-label">Role</label>
-                </div>
-                <div class="col-8">
-                    <input type="text" class="form-control" id="updateRole">
-                </div>
-            </div>
-
             <div>
                 <button type="button" class="btn btn-primary" id="btn-registrarse" onclick="fnActualizar()">
-                    Editar Usuario
+                    Editar Datos del Usuario
                 </button>
 
                 <button type="button" class="btn btn-outline-primary" onclick="fnCancelarEdicion()"> Cancelar</button>

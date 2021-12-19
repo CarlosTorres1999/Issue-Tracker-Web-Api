@@ -19,7 +19,7 @@ using Microsoft.AspNet.Identity;
 namespace Issue_Tracker_Web_API.Controllers
 {
 
-    [Authorize(Roles ="User")]
+    [Authorize]
     public class TicketsController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -29,7 +29,7 @@ namespace Issue_Tracker_Web_API.Controllers
         public TicketsController()
         {
         }
-        private void configMapper()
+        private void ConfigMapper()
         {
             var Config = new MapperConfiguration(c =>
             {
@@ -42,7 +42,7 @@ namespace Issue_Tracker_Web_API.Controllers
         // GET: api/Tickets
         public List<TicketDTO> GetTickets()
         {
-            configMapper();
+            ConfigMapper();
             List<Ticket> Entities = db.Tickets
                 .Include(t => t.Creador)
                 .Include(t => t.Responsable)
@@ -55,7 +55,7 @@ namespace Issue_Tracker_Web_API.Controllers
         [ResponseType(typeof(TicketDTO))]
         public IHttpActionResult GetTicket(int id)
         {
-            configMapper();
+            ConfigMapper();
             Ticket ticket = db.Tickets
                 .Include(t => t.Responsable)
                 .Include(t => t.Creador)
@@ -73,7 +73,7 @@ namespace Issue_Tracker_Web_API.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutTicket(int id, TicketDTO ticket)
         {
-            configMapper();
+            ConfigMapper();
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -88,8 +88,15 @@ namespace Issue_Tracker_Web_API.Controllers
                 return BadRequest("Campo Vacio");
             }
 
-
-            Ticket ticketResult =_Mapper.Map<Ticket>(ticket);
+            Ticket ticketResult;
+            try
+            {
+                 ticketResult = _Mapper.Map<Ticket>(ticket);
+            }
+            catch
+            {
+                return BadRequest("Verifica si los inputs son adecuados");
+            }            
             
 
             ApplicationUser responsable = db
@@ -100,8 +107,8 @@ namespace Issue_Tracker_Web_API.Controllers
                 .Users
                 .SingleOrDefault(u => u.UserName.Equals(ticket.Creador));
 
-            bool existResponsable = db.Tickets.Any(t => t.Responsable.UserName.Equals(ticket.Responsable));
-            bool existCreador = db.Tickets.Any(t => t.Creador.UserName.Equals(ticket.Creador));
+            bool existResponsable = db.Users.Any(u => u.UserName.Equals(ticket.Responsable));
+            bool existCreador = db.Users.Any(u => u.UserName.Equals(ticket.Creador));
 
             if((!existResponsable) && ticket.Responsable != null)
             {
@@ -171,12 +178,21 @@ namespace Issue_Tracker_Web_API.Controllers
         [Authorize]
         public IHttpActionResult PostTicket(TicketDTO ticket)
         {
-            configMapper();
+            ConfigMapper();
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            Ticket ticketResult = _Mapper.Map<Ticket>(ticket);
+            Ticket ticketResult;
+            try
+            {
+                ticketResult = _Mapper.Map<Ticket>(ticket);
+            }
+            catch
+            {
+                return BadRequest("Verifica si los inputs son validos");
+            }
+            
 
             ApplicationUser responsable = db
                 .Users
@@ -231,8 +247,8 @@ namespace Issue_Tracker_Web_API.Controllers
         [HttpGet]
         public List<TicketDTO> FiltrarPorPrioridad(string prioridad)
         {
-            configMapper();
-            List<TicketDTO> tickets = _Mapper.Map<List<TicketDTO>>(db.Tickets);
+            ConfigMapper();
+            List<TicketDTO> tickets = _Mapper.Map<List<TicketDTO>>(db.Tickets.Include(t => t.Creador).Include(t => t.Responsable));
             return tickets.FindAll(t => t.Prioridad.Equals(prioridad));
         }
 
@@ -240,8 +256,8 @@ namespace Issue_Tracker_Web_API.Controllers
         [HttpGet]
         public List<TicketDTO> FiltrarPorEstado(string estado)
         {
-            configMapper();
-            List<TicketDTO> tickets = _Mapper.Map<List<TicketDTO>>(db.Tickets);
+            ConfigMapper();
+            List<TicketDTO> tickets = _Mapper.Map<List<TicketDTO>>(db.Tickets.Include(t => t.Creador).Include(t => t.Responsable));
             return tickets.FindAll(t => t.Estado.Equals(estado));
         }
 
@@ -253,7 +269,7 @@ namespace Issue_Tracker_Web_API.Controllers
             {
                 return BadRequest("Obligatorio el UserName");
             }
-            configMapper();
+            ConfigMapper();
             List<TicketDTO> tickets = new List<TicketDTO>();
             foreach (Ticket t in db.Tickets.Include(t => t.Creador).Include(t => t.Responsable))
             {
@@ -274,22 +290,30 @@ namespace Issue_Tracker_Web_API.Controllers
         [HttpGet]
         public List<TicketDTO> FiltrarPorFechasCreacion(string fecha1, string fecha2)
         {
-            configMapper();
+            ConfigMapper();
             DateTime FechaInicio = Convert.ToDateTime(fecha1);
             DateTime FechaFin = Convert.ToDateTime(fecha2);
             List<Ticket> Entities;
-            if(DateTime.Compare(FechaFin, FechaFin) < 0 )
+            if(DateTime.Compare(FechaFin, FechaInicio) > 0 )
             {
                  Entities = db.Tickets
                     .Include(t => t.Creador)
                     .Include(t => t.Responsable)
                     .ToList()
                     .FindAll(
-                        t => 0 == DateTime.Compare(FechaInicio, t.FechaCreacion)
-                            || 0 > DateTime.Compare(FechaInicio, t.FechaCreacion)
-                            || 0 < DateTime.Compare(FechaFin, t.FechaCreacion)
+                        t => 0 == DateTime.Compare(FechaInicio, t.FechaCreacion)//Si la fecha de Inicio es igual a la fecha de creacion
+                            ||( 0 > DateTime.Compare(FechaInicio, t.FechaCreacion)//Si la Fecha de Inicio esta antes de la Fecha de Creacion Y
+                            && 0 < DateTime.Compare(FechaFin, t.FechaCreacion))//Si la fecha Fin esta despues de la fecha de creacion
+                            || 0 == DateTime.Compare(FechaInicio, t.FechaCreacion) // Si la fecha fin es igual a la fecha de Creacion
               );
-                return _Mapper.Map<List<TicketDTO>>(Entities);
+                try
+                {
+                    return _Mapper.Map<List<TicketDTO>>(Entities);
+                }catch
+                {
+                    return null;
+                }
+                
             }
             else
             {

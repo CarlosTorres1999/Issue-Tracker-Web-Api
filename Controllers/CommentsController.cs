@@ -15,13 +15,13 @@ using Issue_Tracker_Web_API.Models.DTOs;
 
 namespace Issue_Tracker_Web_API.Controllers
 {
-    [Authorize(Roles = "User")]
+    [Authorize]
     public class CommentsController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         private IMapper _Mapper;
 
-        private void configMapper()
+        private void ConfigMapper()
         {
             var Config = new MapperConfiguration(c =>
             {
@@ -35,7 +35,7 @@ namespace Issue_Tracker_Web_API.Controllers
         // GET: api/Comments
         public List<CommentDTO> GetComments()
         {
-            configMapper();
+            ConfigMapper();
             List<Comment> Entities = db.Comments
                 .Include(c => c.Ticket)
                 .Include(c => c.UsuarioComment)
@@ -49,7 +49,7 @@ namespace Issue_Tracker_Web_API.Controllers
         [ResponseType(typeof(CommentDTO))]
         public IHttpActionResult GetComment(int id)
         {
-            configMapper();
+            ConfigMapper();
             Comment comment = db.Comments
                 .Include(c => c.Ticket)
                 .Include(c => c.UsuarioComment)
@@ -66,7 +66,7 @@ namespace Issue_Tracker_Web_API.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutComment(int id, CommentDTO comment)
         {
-            configMapper();
+            ConfigMapper();
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -163,7 +163,7 @@ namespace Issue_Tracker_Web_API.Controllers
         [ResponseType(typeof(CommentDTO))]
         public IHttpActionResult PostComment(CommentDTO comment)
         {
-            configMapper();
+            ConfigMapper();
 
             if (!ModelState.IsValid)
             {
@@ -200,7 +200,7 @@ namespace Issue_Tracker_Web_API.Controllers
         [ResponseType(typeof(CommentDTO))]
         public IHttpActionResult DeleteComment(int id)
         {
-            configMapper();
+            ConfigMapper();
             Comment comment = db.Comments.Find(id);
             if (comment == null)
             {

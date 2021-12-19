@@ -58,6 +58,7 @@ C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tr
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\Microsoft.AspNet.Identity.Owin.dll
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\Microsoft.Owin.Cors.dll
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\Microsoft.Owin.dll
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\Microsoft.Owin.Host.SystemWeb.dll
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\Microsoft.Owin.Security.Cookies.dll
@@ -87,6 +88,8 @@ C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tr
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\AutoMapper.xml
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\EntityFramework.xml
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\EntityFramework.SqlServer.xml
+C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\Microsoft.Owin.xml
+C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\Microsoft.Owin.Cors.xml
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\System.Web.Http.Cors.xml
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\Newtonsoft.Json.xml
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\System.Net.Http.Formatting.xml
@@ -103,7 +106,6 @@ C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tr
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\Microsoft.AspNet.Identity.Core.xml
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\Microsoft.AspNet.Identity.Owin.xml
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\Microsoft.AspNet.Identity.EntityFramework.xml
-C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\Microsoft.Owin.xml
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\Microsoft.Owin.Host.SystemWeb.xml
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\Microsoft.Owin.Security.xml
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\Microsoft.Owin.Security.Facebook.xml
@@ -116,6 +118,7 @@ C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tr
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\es\EntityFramework.resources.dll
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\es\EntityFramework.SqlServer.resources.dll
+C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\es\Microsoft.Owin.resources.dll
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\es\System.Net.Http.Formatting.resources.dll
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\es\System.Web.Helpers.resources.dll
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\es\System.Web.Http.resources.dll
@@ -129,7 +132,6 @@ C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tr
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\es\Microsoft.AspNet.Identity.Core.resources.dll
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\es\Microsoft.AspNet.Identity.Owin.resources.dll
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\es\Microsoft.AspNet.Identity.EntityFramework.resources.dll
-C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\es\Microsoft.Owin.resources.dll
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\es\Microsoft.Owin.Host.SystemWeb.resources.dll
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\es\Microsoft.Owin.Security.resources.dll
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\es\Microsoft.Owin.Security.Facebook.resources.dll
@@ -137,12 +139,8 @@ C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tr
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\es\Microsoft.Owin.Security.Twitter.resources.dll
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\es\System.Web.Http.Owin.resources.dll
+C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\obj\Debug\Issue Tracker Web API.csprojAssemblyReference.cache
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\obj\Debug\Issue_Tracker_Web_API.Migrations.202111251352377_Inicio.resources
-C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\obj\Debug\Issue Tracker Web API.csproj.GenerateResource.cache
-C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\obj\Debug\Issue Tracker Web API.csproj.CoreCompileInputs.cache
-C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\obj\Debug\Issue Tracker Web API.csproj.CopyComplete
-C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\obj\Debug\Issue Tracker Web API.dll
-C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\obj\Debug\Issue Tracker Web API.pdb
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\obj\Debug\IssueTracker_web_api.Migrations.Tickets.resources
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\obj\Debug\IssueTracker_web_api.Migrations.ActualizadoTicket.resources
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\obj\Debug\IssueTracker_web_api.Migrations.VerificadoForeignKeys.resources
@@ -150,7 +148,10 @@ C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tr
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\obj\Debug\IssueTracker_web_api.Migrations.Comment.resources
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\obj\Debug\IssueTracker_web_api.Migrations.dropped.resources
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\obj\Debug\IssueTracker_web_api.Migrations.CommentChange.resources
-C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\Microsoft.Owin.Cors.dll
-C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\bin\Microsoft.Owin.Cors.xml
-C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\obj\Debug\Issue Tracker Web API.csprojAssemblyReference.cache
 C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\obj\Debug\IssueTracker_web_api.Migrations.Nullable.resources
+C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\obj\Debug\Issue Tracker Web API.csproj.GenerateResource.cache
+C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\obj\Debug\Issue Tracker Web API.csproj.CoreCompileInputs.cache
+C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\obj\Debug\Issue Tracker Web API.csproj.CopyComplete
+C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\obj\Debug\Issue Tracker Web API.dll
+C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\obj\Debug\Issue Tracker Web API.pdb
+C:\Users\Carlos Torres\Documents\Facultad\TE 2021\Proyecto II - Web Api\Issue Tracker Web API\obj\Debug\IssueTracker_web_api.Migrations.LoadRoles.resources

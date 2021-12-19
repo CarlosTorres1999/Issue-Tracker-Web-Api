@@ -260,6 +260,10 @@
     <Compile Include="Migrations\202112091305466_Nullable.Designer.cs">
       <DependentUpon>202112091305466_Nullable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202112152114104_LoadRoles.cs" />
+    <Compile Include="Migrations\202112152114104_LoadRoles.Designer.cs">
+      <DependentUpon>202112152114104_LoadRoles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -316,7 +320,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Test.txt" />
     <Content Include="Views\WebSources\Index.html" />
     <Content Include="Views\WebSources\js\Api.js" />
     <Content Include="Views\WebSources\js\App.js" />
@@ -398,6 +401,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202112091305466_Nullable.resx">
       <DependentUpon>202112091305466_Nullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112152114104_LoadRoles.resx">
+      <DependentUpon>202112152114104_LoadRoles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

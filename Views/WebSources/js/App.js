@@ -1,5 +1,4 @@
-﻿
-
+﻿//Declaracion de variables
 
 let usuarioNombre;
 let usuarioApellido;
@@ -9,7 +8,9 @@ let usuarioConfirmPassword;
 let inputUser;
 let passwordLogin;
 
-
+/**
+ * Funcion Encargada de iniciar las variables al cargar la pagina
+ */
 const onInit = () => {
     usuarioNombre = document.getElementById("usuario-nombre");
     usuarioApellido = document.getElementById("usuario-apellido");
@@ -20,12 +21,35 @@ const onInit = () => {
     passwordLogin = document.getElementById("password-login");
 }
 
+/**
+ * Funcion Encargada de Registrar a un usuario
+ */
 const fnRegistrarse = () => {
-    registerUser(usuarioNombre.value, usuarioApellido.value, usuarioUserName.value, usuarioPassword.value, "User", usuarioConfirmPassword.value); 
     fnBorrarWarningsRegistro();
     fnValidar();
+    let user = new UserDTORequest(
+        usuarioNombre.value, 
+        usuarioApellido.value, 
+        usuarioUserName.value, 
+        usuarioPassword.value, 
+        "User", 
+        usuarioConfirmPassword.value
+
+    );
+    registerUser(user)
+    .then(()=> {
+        console.log("Registrado al usuario");
+
+    })
+    .catch((error) => {
+        console.log(error);
+        alert("error al loguear al usuario")
+    });
 }
 
+/**
+ * Funcion que se encarga de validar a los usuarios
+ */
 const fnValidar = () => {
 
     if(usuarioNombre.value.length === 0){
@@ -62,6 +86,9 @@ const fnValidar = () => {
 
 }
 
+/**
+ * Borra los warnings
+ */
 const fnBorrarWarningsRegistro = () => {
     document.getElementById("validar-form-nombre").style ="display:none;";
     document.getElementById("validar-form-apellido").style ="display:none;";
@@ -70,30 +97,43 @@ const fnBorrarWarningsRegistro = () => {
     document.getElementById("validar-form-confirm-password").style ="display:none;";
 }
 
+/**
+ * Se encarga del login
+ */
 const fnLogin  = () => {
-    
-    fnGetToken(inputUser.value, passwordLogin.value);
-    if(verificarLoginValido){
-        let tokenObj = JSON.parse(sessionStorage.getItem("Token"));
-        console.log(tokenObj);
-        obtenerIDUsuarioLoggeado(tokenObj.access_token);
-        getUserById(IdUserLogged);
-        console.log(IdUserLogged);
-        let user = JSON.parse(localStorage.getItem("Usuario-Logueado"));
-        console.log(user);
-        if(user.role === null){
-            alert("No cuenta con los roles necesarios para el inicio de sesion, por favor registrese");
-        }
 
-        if(user.role === "Admin"){
-            alert("Logueado Como Administrador");
-        }
 
-        if(user.role === "User"){
-            alert("logueado Como Usuario Normal");
-        }
-        else {
-            alert("Logueado sin Autorizacion");
-        }
-    }
+    fnGetToken(inputUser.value, passwordLogin.value)
+    .then(response => response.text())
+    .then(result => {
+        console.log("token obtenido");
+        localStorage.setItem("token", result);
+    })
+    .catch(error => {
+        console.log("error al obtener el token");
+        alert("Error al obtener el Token, verifica las credenciales");
+    })
+    .finally(() => {
+        let token = JSON.parse(localStorage.getItem("token"));
+        getUserByUserName(token.userName, token.access_token)
+        .then(r => {
+            localStorage.setItem("Logged", r);
+        })
+        .catch(e => {
+            console.log("error al obtener el usuario",e);
+            alert("Error al obtener el usuario logueado, verifica las credenciales :(");
+        })
+        .finally(() => {
+            let user = JSON.parse(localStorage.getItem("Logged"));
+            if(user.Role === "Admin"){
+                alert("Logueado como Administrador");
+                location.assign("/pages/UserDashBoard.html");
+            }
+            if(user.Role === "User"){
+                alert("Logueado como Usuario Normal");
+                location.assign("/pages/TicketDashBoard.html");
+            }
+        });
+    }) 
 } 
+

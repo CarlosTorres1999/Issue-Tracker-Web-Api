@@ -23,7 +23,7 @@ namespace Issue_Tracker_Web_API
         public void ConfigureAuth(IAppBuilder app)
         {
             // Configure el contexto de base de datos y el administrador de usuarios para usar una única instancia por solicitud
-            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
+           //app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             app.CreatePerOwinContext(ApplicationDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
 

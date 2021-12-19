@@ -18,7 +18,8 @@ namespace Issue_Tracker_Web_API
             // Configure Web API para usar solo la autenticación de token de portador.
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
-
+           // var cors = new EnableCorsAttribute("*", "*", "*");
+            //config.EnableCors(cors);
             // Rutas de Web API
             config.MapHttpAttributeRoutes();
             config.Routes.MapHttpRoute(
