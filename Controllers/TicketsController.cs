@@ -291,34 +291,37 @@ namespace Issue_Tracker_Web_API.Controllers
         public List<TicketDTO> FiltrarPorFechasCreacion(string fecha1, string fecha2)
         {
             ConfigMapper();
-            DateTime FechaInicio = Convert.ToDateTime(fecha1);
-            DateTime FechaFin = Convert.ToDateTime(fecha2);
-            List<Ticket> Entities;
-            if(DateTime.Compare(FechaFin, FechaInicio) > 0 )
+            try
             {
-                 Entities = db.Tickets
-                    .Include(t => t.Creador)
-                    .Include(t => t.Responsable)
-                    .ToList()
-                    .FindAll(
-                        t => 0 == DateTime.Compare(FechaInicio, t.FechaCreacion)//Si la fecha de Inicio es igual a la fecha de creacion
-                            ||( 0 > DateTime.Compare(FechaInicio, t.FechaCreacion)//Si la Fecha de Inicio esta antes de la Fecha de Creacion Y
-                            && 0 < DateTime.Compare(FechaFin, t.FechaCreacion))//Si la fecha Fin esta despues de la fecha de creacion
-                            || 0 == DateTime.Compare(FechaInicio, t.FechaCreacion) // Si la fecha fin es igual a la fecha de Creacion
-              );
-                try
+
+                DateTime FechaInicio = Convert.ToDateTime(fecha1);
+                DateTime FechaFin = Convert.ToDateTime(fecha2);
+                List<Ticket> Entities;
+                if (DateTime.Compare(FechaFin, FechaInicio) > 0)
                 {
+                    Entities = db.Tickets
+                       .Include(t => t.Creador)
+                       .Include(t => t.Responsable)
+                       .ToList()
+                       .FindAll(
+                           t => 0 == DateTime.Compare(FechaInicio, t.FechaCreacion)//Si la fecha de Inicio es igual a la fecha de creacion
+                               || (0 > DateTime.Compare(FechaInicio, t.FechaCreacion)//Si la Fecha de Inicio esta antes de la Fecha de Creacion Y
+                               && 0 < DateTime.Compare(FechaFin, t.FechaCreacion))//Si la fecha Fin esta despues de la fecha de creacion
+                               || 0 == DateTime.Compare(FechaInicio, t.FechaCreacion) // Si la fecha fin es igual a la fecha de Creacion
+                    );
                     return _Mapper.Map<List<TicketDTO>>(Entities);
-                }catch
+
+                }
+                else
                 {
                     return null;
                 }
-                
             }
-            else
+            catch
             {
                 return null;
-            }
+            }          
+  
         }
       
 
